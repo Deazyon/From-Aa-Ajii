@@ -10,16 +10,14 @@
       background: linear-gradient(to bottom, #fbc2eb, #a6c1ee);
       font-family: 'Quicksand', sans-serif;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       margin: 0;
-      padding: 20px;
       text-align: center;
-    }
-
-    .container {
-      max-width: 90%;
+      padding: 20px;
+      overflow: hidden;
     }
 
     .love-icon {
@@ -85,16 +83,13 @@
 </head>
 <body>
 
-  <div class="container">
-    <div class="love-icon" id="love">❤️</div>
-    <div id="message" class="message"></div>
-    <button id="loveBtn" class="love-btn">Tekan ini De...!!</button>
+  <div class="love-icon" id="love">❤️</div>
+  <div id="message" class="message"></div>
+  <button id="loveBtn" class="love-btn">Tekan ini De...!!</button>
 
-    <!-- Pastikan file lagu.mp3 disimpan di folder yg sama dengan index.html -->
-    <audio id="bgmusic" autoplay loop>
-      <source src="lagu.mp3" type="audio/mpeg">
-    </audio>
-  </div>
+  <audio id="bgmusic" loop>
+    <source src="assets/angelbaby.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const messages = [
@@ -104,11 +99,18 @@
       "2...",
       "1...",
       "Aa tahu... akhir-akhir ini nggak selalu mudah ya..........",
-      "Tapi kamu sudah sejauh ini, itu luar biasa ko.........",
+      "Tapi kalian udah sejauh ini, itu luar biasa ko.........",
       "Nggak apa-apa kalau capek, istirahat sebentar juga nggak salah..........",
       "Yang penting... jangan berhenti ya, pelan juga nggak apa.",
-      "A di sini. Selalu. Untuk kamu.",
-      "TETAP SEMANGAT YA!!! 💖",
+      "Jangan lupa makan, nanti kurus;)",
+      "Aa di sini. Selalu. Untuk kalian.",
+      "Maaf kalo belum bisa pulang.......lagi cari celah buat fokus sebentar",
+      "Tapi inget jangan pernah anggap kalian sendirian",
+      "Kalo capek, kesel/ada masalah ngomong aja, jangan dipendem",
+      "Kita gak seberuntung keluarga lain di masa lalu, tapi udh sampai fase ini udh alhamdullilah.....",
+      "Jangan salah pilih pasangan ya, Aa ini laki-laki paham maksud laki-laki juga, jadi jangan malu kalo mau ngomong",
+      "Jaga kesehatan ya;)"
+      "TETAP SEMANGAT!!! 💖",
       "FROM Aa Aji :)"
     ];
 
@@ -116,6 +118,7 @@
     const msgBox = document.getElementById("message");
     const btn = document.getElementById("loveBtn");
     const love = document.getElementById("love");
+    const audio = document.getElementById("bgmusic");
 
     function typeWriterEffect(text, callback) {
       let i = 0;
@@ -146,16 +149,18 @@
         heart.classList.add('heart');
         heart.textContent = '❤️';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 2 + 3) + 's'; // 3-5s
+        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
         document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
       }, 200);
 
-      // Stop after 8 detik
       setTimeout(() => clearInterval(interval), 8000);
     }
 
     btn.addEventListener("click", () => {
+      audio.play().catch(err => console.warn("Autoplay gagal: ", err)); // Mulai musik
       btn.style.display = "none";
       love.classList.add("hide");
       setTimeout(() => {
@@ -166,4 +171,4 @@
   </script>
 
 </body>
-</html>
+</html
