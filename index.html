@@ -10,14 +10,16 @@
       background: linear-gradient(to bottom, #fbc2eb, #a6c1ee);
       font-family: 'Quicksand', sans-serif;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       margin: 0;
-      text-align: center;
       padding: 20px;
-      overflow: hidden;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 90%;
     }
 
     .love-icon {
@@ -83,13 +85,16 @@
 </head>
 <body>
 
-  <div class="love-icon" id="love">❤️</div>
-  <div id="message" class="message"></div>
-  <button id="loveBtn" class="love-btn">Tekan ini De...!!</button>
+  <div class="container">
+    <div class="love-icon" id="love">❤️</div>
+    <div id="message" class="message"></div>
+    <button id="loveBtn" class="love-btn">Tekan ini De...!!</button>
 
-  <audio id="bgmusic" loop>
-    <source src="assets/angelbaby.mp3" type="audio/mpeg">
-  </audio>
+    <!-- Pastikan file lagu.mp3 disimpan di folder yg sama dengan index.html -->
+    <audio id="bgmusic" autoplay loop>
+      <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
   <script>
     const messages = [
@@ -102,7 +107,7 @@
       "Tapi kamu sudah sejauh ini, itu luar biasa ko.........",
       "Nggak apa-apa kalau capek, istirahat sebentar juga nggak salah..........",
       "Yang penting... jangan berhenti ya, pelan juga nggak apa.",
-      "Aa di sini. Selalu. Untuk kalian.",
+      "A di sini. Selalu. Untuk kamu.",
       "TETAP SEMANGAT YA!!! 💖",
       "FROM Aa Aji :)"
     ];
@@ -111,7 +116,6 @@
     const msgBox = document.getElementById("message");
     const btn = document.getElementById("loveBtn");
     const love = document.getElementById("love");
-    const audio = document.getElementById("bgmusic");
 
     function typeWriterEffect(text, callback) {
       let i = 0;
@@ -142,18 +146,16 @@
         heart.classList.add('heart');
         heart.textContent = '❤️';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        heart.style.animationDuration = (Math.random() * 2 + 3) + 's'; // 3-5s
         document.body.appendChild(heart);
-        setTimeout(() => {
-          heart.remove();
-        }, 6000);
+        setTimeout(() => heart.remove(), 6000);
       }, 200);
 
+      // Stop after 8 detik
       setTimeout(() => clearInterval(interval), 8000);
     }
 
     btn.addEventListener("click", () => {
-      audio.play().catch(err => console.warn("Autoplay gagal: ", err)); // Mulai musik
       btn.style.display = "none";
       love.classList.add("hide");
       setTimeout(() => {
