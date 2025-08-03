@@ -16,6 +16,7 @@
       margin: 0;
       padding: 20px;
       text-align: center;
+      overflow: hidden;
     }
 
     .container {
@@ -90,9 +91,8 @@
     <div id="message" class="message"></div>
     <button id="loveBtn" class="love-btn">Tekan ini De...!!</button>
 
-    <!-- Pastikan file lagu.mp3 disimpan di folder yg sama dengan index.html -->
-    <audio id="bgmusic" autoplay loop>
-      <source src="assets/angelbaby.mp3" type="audio/mpeg">
+    <audio id="bgmusic" loop>
+      <source src="assets/angelbaby.mp3" type="audio/mpeg" />
     </audio>
   </div>
 
@@ -107,16 +107,16 @@
       "Tapi kalian udah sejauh ini, itu luar biasa ko.........",
       "Nggak apa-apa kalau capek, istirahat sebentar juga nggak salah..........",
       "Yang penting... jangan berhenti ya, pelan juga nggak apa.",
-      "Jangan lupa makan, nanti kurus;)",
+      "Jangan lupa makan, nanti kurus ;)",
       "Aa di sini. Selalu. Untuk kalian.",
       "Maaf kalo belum bisa pulang.......lagi cari celah buat fokus sebentar",
       "Tapi inget jangan pernah anggap kalian sendirian",
       "Kalo capek, kesel/ada masalah ngomong aja, jangan dipendem",
       "DAN JANGAN PADA BERANTEM!",
       "Kita ini keluarga",
-      "Kita gak seberuntung keluarga lain di masa lalu, tapi udh sampai fase ini udh alhamdullilah.....",
+      "Kita gak seberuntung keluarga lain di masa lalu, tapi udh sampai fase ini udh alhamdulillah.....",
       "Jangan salah pilih pasangan ya, Aa ini laki-laki paham maksud laki-laki juga, jadi jangan malu kalo mau ngomong",
-      "Jaga kesehatan ya;)",
+      "Jaga kesehatan ya ;)",
       "TETAP SEMANGAT!!! 💖",
       "FROM Aa Aji :)",
     ];
@@ -155,18 +155,22 @@
         heart.classList.add('heart');
         heart.textContent = '❤️';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 2 + 3) + 's'; // 3-5s
+        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 6000);
       }, 200);
-
-      // Stop after 8 detik
       setTimeout(() => clearInterval(interval), 8000);
     }
 
     btn.addEventListener("click", () => {
+      const music = document.getElementById("bgmusic");
+      music.play().catch(err => {
+        console.log("Audio gagal diputar:", err);
+      });
+
       btn.style.display = "none";
       love.classList.add("hide");
+
       setTimeout(() => {
         love.style.display = "none";
         showNextMessage();
